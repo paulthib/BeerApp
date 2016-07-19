@@ -1,0 +1,5 @@
+﻿1>------ Build started: Project: BeerApp, Configuration: Debug Any CPU ------
+1>  BeerApp -> C:\Temp\BeerApp\BeerApp\bin\BeerApp.dll
+2>------ Build started: Project: BeerApp.Tests, Configuration: Debug Any CPU ------
+2>  BeerApp.Tests -> C:\Temp\BeerApp\BeerApp.Tests\bin\Debug\BeerApp.Tests.dll
+========== Build: 2 succeeded, 0 failed, 2 up-to-date, 0 skipped ==========
