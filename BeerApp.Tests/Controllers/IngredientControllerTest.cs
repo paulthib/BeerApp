@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Beer.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -33,6 +34,19 @@ namespace BeerApp.Tests.Controllers
             // Assert
             Assert.IsNotNull(result);
             Assert.AreEqual("Barley", result.Name);
+
+        }
+
+        [TestMethod]
+        public void Test_GetAll()
+        {
+
+            // Act
+            var result = _controller.Get( );
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.Count());
 
         }
     }

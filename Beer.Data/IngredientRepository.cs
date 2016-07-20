@@ -15,7 +15,7 @@ namespace Beer.Data
         }
         public IEnumerable<Ingredient> SelectAll()
         {
-            throw new NotImplementedException();
+            return _ingredients.ToList();
         }
 
         public Ingredient SelectById(object id)

@@ -19,9 +19,10 @@ namespace BeerApp.Controllers
         }
 
         // GET: api/Ingredient
-        public IEnumerable<string> Get()
+        public IEnumerable<IngredientViewModel> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _repo.SelectAll().Select(s => new IngredientViewModel()
+                    { Id = s.Id, Name = s.Name, Description = s.Description});
         }
 
         // GET: api/Ingredient/5
