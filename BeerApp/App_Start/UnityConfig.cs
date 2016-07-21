@@ -18,9 +18,9 @@ namespace BeerApp
             container.RegisterType<IGenericRepository<Ingredient>, IngredientRepository>();
             container.RegisterType<IGenericRepository<Recipe>, RecipeRepository>();
 
-            // e.g. container.RegisterType<ITestService, TestService>();
-
+            // MVC
             DependencyResolver.SetResolver(new Microsoft.Practices.Unity.Mvc.UnityDependencyResolver(container));
+            // Web Api
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }

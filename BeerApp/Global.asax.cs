@@ -14,6 +14,7 @@ namespace BeerApp
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+            // dependency injection
             UnityConfig.RegisterComponents();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
