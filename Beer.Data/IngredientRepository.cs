@@ -23,7 +23,7 @@ namespace Beer.Data
             return _ingredients.ToList();
         }
 
-        public Ingredient SelectById(object id)
+        public Ingredient SelectById(int id)
         {
             throw new NotImplementedException();
         }

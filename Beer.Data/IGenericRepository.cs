@@ -10,7 +10,7 @@ namespace Beer.Data
     public interface IGenericRepository<T> where T : RepositoryObject
     {
         IEnumerable<T> SelectAll();
-        T SelectById(object id);
+        T SelectById(int id);
         T SearchByName(string name);
         void Insert(T obj);
         void Update(T obj);

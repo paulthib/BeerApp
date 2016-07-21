@@ -27,7 +27,10 @@ namespace BeerApp.Controllers
         // GET: api/BeerRecipe/5
         public BeerRecipeViewModel Get(int id)
         {
-            return new BeerRecipeViewModel();
+            var recipe = _repo.SelectById(id);
+            BeerRecipeViewModel recipeVm = new BeerRecipeViewModel();
+            MapRecipeModelToVM(recipeVm, recipe);
+            return recipeVm;
         }
 
         // GET: api/BeerRecipe/"beer name"

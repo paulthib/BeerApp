@@ -16,15 +16,24 @@ namespace Beer.Data
         {
             _recipes = new List<Recipe>();
             _recipeIngredients = new List<RecipeIngredient>();
+
+            // add a default
+            List<RecipeIngredient> thisRecipeIngredients = new List<RecipeIngredient>();
+            thisRecipeIngredients.Add(new RecipeIngredient() {Id = 1, IngredientId = 1, Quantity = 1, RecipeId = 1});
+            _recipes.Add(new Recipe()
+            {
+                Id=1,Name = "Boldly Stout", Description = "a stout stout"
+                , Ingredients = thisRecipeIngredients
+            });
         }
         public IEnumerable<Recipe> SelectAll()
         {
             throw new NotImplementedException();
         }
 
-        public Recipe SelectById(object id)
+        public Recipe SelectById(int id)
         {
-            throw new NotImplementedException();
+            return _recipes.FirstOrDefault(r => r.Id == id);
         }
 
         public Recipe SearchByName(string name)
