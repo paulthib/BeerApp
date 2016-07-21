@@ -1,4 +1,10 @@
-﻿<div class="jumbotron">
+﻿
+@section scripts {
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/MyScripts/Ingredients.js"></script>
+}
+
+<div class="jumbotron">
     <h1>Beer App</h1>
     <p class="lead">Beer Recipe</p>
     <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
@@ -11,5 +17,15 @@
     <div class="col-md-4">
     </div>
     <div class="col-md-4">
+        <div data-ng-app="myModule">
+            <form name="mainForm" data-ng-submit="sendForm()" data-ng-controller="myController" novalidate>
+                <div class="error">{{message}}</div>
+                <!--   will code here -->
+                <select data-ng-model="ingredient" data-ng-options="c.Id as c.Name for c in ingredients" data-ng-change="">
+                    <option value="">-- Select Ingredient --</option>
+                </select>
+            </form>
+        </div>
     </div>
+
 </div>
