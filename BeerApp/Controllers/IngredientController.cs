@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Results;
 using Beer.Data;
 using Beer.Model;
 using BeerApp.Models;
@@ -19,11 +20,19 @@ namespace BeerApp.Controllers
         }
 
         // GET: api/Ingredient
-        public IEnumerable<IngredientViewModel> Get()
+        public JsonResult<IEnumerable<IngredientViewModel>> Get()
         {
-            return _repo.SelectAll().Select(s => new IngredientViewModel()
-                    { Id = s.Id, Name = s.Name, Description = s.Description});
+            var data = _repo.SelectAll();
+            //var ret = data.Select(x => new { x.Id, x.Name }).ToList();
+            var ret = _repo.SelectAll().Select(s => new IngredientViewModel()
+                        { Id = s.Id, Name = s.Name, Description = s.Description});
+            return Json(ret);
         }
+        //public IEnumerable<IngredientViewModel> Get()
+        //{
+        //    return _repo.SelectAll().Select(s => new IngredientViewModel()
+        //            { Id = s.Id, Name = s.Name, Description = s.Description});
+        //}
 
         // GET: api/Ingredient/5
         public string Get(int id)
@@ -57,6 +66,7 @@ namespace BeerApp.Controllers
 
         private IngredientViewModel MapIngredientToVM(Ingredient ingredient)
         {
+            if (ingredient == null) return null;
             return new IngredientViewModel()
             {
                 Id = ingredient.Id,

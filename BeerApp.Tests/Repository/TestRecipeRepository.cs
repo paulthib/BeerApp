@@ -1,24 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Beer.Data;
 using Beer.Model;
 
-namespace Beer.Data
+namespace BeerApp.Tests.Repository
 {
-    public class RecipeRepository : IGenericRepository<Recipe>
+    public class TestRecipeRepository : IGenericRepository<Recipe>
     {
         private List<Recipe> _recipes;
         private List<RecipeIngredient> _recipeIngredients;
 
-        public RecipeRepository()
+        public TestRecipeRepository()
         {
             _recipes = new List<Recipe>();
             _recipeIngredients = new List<RecipeIngredient>();
 
-            // start with a few
-            AddInitialRecipes();
+            // add a default
+            List<RecipeIngredient> thisRecipeIngredients = new List<RecipeIngredient>();
+            thisRecipeIngredients.Add(new RecipeIngredient() {Id = 1, IngredientId = 1, Quantity = 1, RecipeId = 1});
+            _recipes.Add(new Recipe()
+            {
+                Id=1,Name = "Boldly Stout", Description = "a stout stout"
+                , Ingredients = thisRecipeIngredients
+            });
+            _recipes.Add(new Recipe()
+            {
+                Id = 2,
+                Name = "Polished Porter",
+                Description = "another beer"
+                ,
+                Ingredients = thisRecipeIngredients
+            });
         }
         public IEnumerable<Recipe> SelectAll()
         {
@@ -65,32 +78,6 @@ namespace Beer.Data
             throw new NotImplementedException();
         }
 
-        #region Support Methods
-
-        private void AddInitialRecipes()
-        {
-            // add a default
-            List<RecipeIngredient> thisRecipeIngredients = new List<RecipeIngredient>();
-            thisRecipeIngredients.Add(new RecipeIngredient() { Id = 1, IngredientId = 1, Quantity = 1, RecipeId = 1 });
-            _recipes.Add(new Recipe()
-            {
-                Id = 1,
-                Name = "Boldly Stout",
-                Description = "a stout stout"
-                ,
-                Ingredients = thisRecipeIngredients
-            });
-            _recipes.Add(new Recipe()
-            {
-                Id = 2,
-                Name = "Polished Porter",
-                Description = "another beer"
-                ,
-                Ingredients = thisRecipeIngredients
-            });
-
-        }
-        #endregion Support Methods
 
     }
 }

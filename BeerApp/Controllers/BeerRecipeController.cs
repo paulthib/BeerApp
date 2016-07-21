@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.Remoting.Messaging;
 using System.Web.Http;
+using System.Web.Http.Results;
+using System.Web.Mvc;
 using Beer.Data;
 using Beer.Model;
 using BeerApp.Models;
@@ -19,35 +22,34 @@ namespace BeerApp.Controllers
         }
 
         // GET: api/BeerRecipe
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
+        public JsonResult<IEnumerable<BeerRecipeViewModel>> Get()
+        {
+            var recipe = _repo.SelectAll();
+            var recipeVm = recipe.Select(r => MapToViewModel(r));
+            return Json(recipeVm);
+        }
 
         // GET: api/BeerRecipe/5
-        public BeerRecipeViewModel Get(int id)
+        public JsonResult<Recipe> Get(int id)
         {
             var recipe = _repo.SelectById(id);
-            BeerRecipeViewModel recipeVm = new BeerRecipeViewModel();
-            MapRecipeModelToVM(recipeVm, recipe);
-            return recipeVm;
+            return Json(recipe);
         }
+
 
         // GET: api/BeerRecipe/"beer name"
         public BeerRecipeViewModel Get(string name)
         {
             var recipe = _repo.SearchByName(name);
             BeerRecipeViewModel recipeVm = new BeerRecipeViewModel();
-            MapRecipeModelToVM(recipeVm, recipe);
-            return recipeVm;
+            return MapToViewModel(recipe);
         }
 
         // POST: api/BeerRecipe
         public void Post([FromBody]BeerRecipeViewModel recipeVm)
         {
             var recipe = new Recipe();
-            MapRecipeVmToModel(recipe, recipeVm);
-            _repo.Insert(recipe);
+            _repo.Insert(MapToModel(recipeVm));
         }
 
         // PUT: api/BeerRecipe/5
@@ -61,8 +63,9 @@ namespace BeerApp.Controllers
         }
 
 
-        private void MapRecipeVmToModel(Recipe recipe, BeerRecipeViewModel recipeVm)
+        private Recipe MapToModel( BeerRecipeViewModel recipeVm)
         {
+            Recipe recipe = new Recipe();
             recipe.Id = recipeVm.Id;
             recipe.BeerType = recipeVm.BeerType;
             recipe.Name = recipeVm.Name;
@@ -78,10 +81,13 @@ namespace BeerApp.Controllers
                             Quantity = i.Quantity
                         }).ToList();
 
+            return recipe;
         }
 
-        private void MapRecipeModelToVM(BeerRecipeViewModel recipeVm, Recipe recipe )
+        private BeerRecipeViewModel MapToViewModel(Recipe recipe)
         {
+            if (recipe == null) return null;
+            BeerRecipeViewModel recipeVm = new BeerRecipeViewModel();
             recipeVm.Id = recipe.Id;
             recipeVm.BeerType = recipe.BeerType;
             recipeVm.Name = recipe.Name;
@@ -97,8 +103,7 @@ namespace BeerApp.Controllers
                             Quantity = i.Quantity
                         }).ToList();
 
+            return recipeVm;
         }
-
-
     }
 }
