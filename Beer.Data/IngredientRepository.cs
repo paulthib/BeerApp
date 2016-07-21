@@ -12,6 +12,11 @@ namespace Beer.Data
         public IngredientRepository()
         {
             _ingredients = new List<Ingredient>();
+            _ingredients.Add(new Ingredient() { Id = 1, Name = "Cascade Hops" });
+            _ingredients.Add(new Ingredient() { Id = 2, Name = "Barley" });
+            _ingredients.Add(new Ingredient() { Id = 3, Name = "Wheat" });
+            _ingredients.Add(new Ingredient() { Id = 4, Name = "Rye" });
+
         }
         public IEnumerable<Ingredient> SelectAll()
         {

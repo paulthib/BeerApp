@@ -18,4 +18,8 @@ app.controller('myController', function ($scope, $http) {
         });
     }
 
+    $scope.IngredientSelected = function () {
+        var ingredientId = $scope.ingredient;
+        alert("You selected " + $scope.ingredients[$scope.ingredient-1].Name);
+    }
 });

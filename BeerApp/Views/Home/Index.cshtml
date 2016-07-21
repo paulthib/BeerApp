@@ -21,7 +21,7 @@
             <form name="mainForm" data-ng-submit="sendForm()" data-ng-controller="myController" novalidate>
                 <div class="error">{{message}}</div>
                 <!--   will code here -->
-                <select data-ng-model="ingredient" data-ng-options="c.Id as c.Name for c in ingredients" data-ng-change="">
+                <select data-ng-model="ingredient" data-ng-options="i.Id as i.Name for i in ingredients" data-ng-change="IngredientSelected()">
                     <option value="">-- Select Ingredient --</option>
                 </select>
             </form>

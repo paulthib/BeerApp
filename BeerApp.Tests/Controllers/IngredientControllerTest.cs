@@ -46,7 +46,7 @@ namespace BeerApp.Tests.Controllers
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count());
+            Assert.AreEqual(6, result.Count());
 
         }
     }

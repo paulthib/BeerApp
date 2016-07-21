@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Beer.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BeerApp;
 using BeerApp.Controllers;
@@ -12,7 +13,7 @@ namespace BeerApp.Tests.Controllers
         public void Index()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            HomeController controller = new HomeController(new IngredientRepository());
 
             // Act
             ViewResult result = controller.Index() as ViewResult;

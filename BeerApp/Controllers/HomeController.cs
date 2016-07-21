@@ -11,12 +11,9 @@ namespace BeerApp.Controllers
     public class HomeController : Controller
     {
         private IGenericRepository<Ingredient> _repo;
-        public HomeController( )
+        public HomeController(IGenericRepository<Ingredient> repository )
         {
-            _repo = new IngredientRepository();
-            _repo.Insert(new Ingredient() {Id = 1, Name = "Hops"});
-            _repo.Insert(new Ingredient() { Id = 2, Name = "Barley" });
-            _repo.Insert(new Ingredient() { Id = 3, Name = "Wheat" });
+            _repo = repository;
         }
         public ActionResult Index()
         {

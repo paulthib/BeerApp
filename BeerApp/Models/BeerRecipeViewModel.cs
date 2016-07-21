@@ -12,6 +12,7 @@ namespace BeerApp.Models
 
         [Required]
         public string BeerType { get; set; }
+        [Required]
         public string Name { get; set; }
         public string Description { get; set; }
         public List<RecipeIngredientVm> Ingredients { get; set; }
